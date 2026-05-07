@@ -1,0 +1,12 @@
+.app__film-cards-container {
+  display: flex;
+  justify-content: space-between;
+  row-gap: 20px;
+  column-gap: 20px;
+  margin: 10px;
+}
+
+.scrollable {
+  overflow-y: auto;
+  
+}

@@ -1,6 +1,7 @@
 export interface Film {
   id: number;
   title: string;
+  year: number;
   genre: string;
   rating: number;
   duration: number;
@@ -10,9 +11,10 @@ export interface Film {
 }
 
 export interface FilmCard {
-  poster: string;
+  posterUrl: string;
   title: string;
   year: number;
   genre: string;
   rating: number;
+  isFavorite: boolean;
 }

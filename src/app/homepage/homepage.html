@@ -6,10 +6,8 @@
   </form>
 </search>
 
-<div class="app__film-card">
-  <h2>Card title</h2>
-  <span>Film poster</span>
-  <span>Film year</span>
-  <span>Film genre</span>
-  <span>Film rating</span>
+<div class="app__film-cards-container scrollable">
+  @for (film of getFilms(); track film.id) {
+    <app-film-card [film]="film"></app-film-card>
+  }
 </div>
