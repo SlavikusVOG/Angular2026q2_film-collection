@@ -1,1 +1,8 @@
-<span>{{getCurrentRoute()}}</span>
+<nav>
+  @for (segment of getCurrentRoute(); track segment; let last = $last) {
+    <a routerLink="/{{segment}}">{{getBreadcrumb(segment)}}</a>
+    @if (!last) {
+      <span> &gt; </span>
+    }
+  }
+</nav>
