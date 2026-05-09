@@ -1,5 +1,6 @@
-import { Component, InputSignal, input, signal } from '@angular/core';
+import { Component, InputSignal, inject, input, signal } from '@angular/core';
 import { FilmCard as FilmCardInterface } from '../models/film.data';
+import { FilmPageService } from '../film-page/film-page.service';
 
 @Component({
   selector: 'app-film-card',
@@ -10,7 +11,7 @@ import { FilmCard as FilmCardInterface } from '../models/film.data';
 export class FilmCard {
   film: InputSignal<FilmCardInterface> = input.required<FilmCardInterface>();
   isFavorite = signal(false);
-
+  private filmPageService = inject(FilmPageService);
   onInit() {
     this.isFavorite.set(this.film().isFavorite);
   }
@@ -18,5 +19,9 @@ export class FilmCard {
   toggleFavorite() {
     this.film().isFavorite = !this.film().isFavorite;
     this.isFavorite.set(this.film().isFavorite);
+  }
+
+  getFormattedDuration(duration: number) {
+    return this.filmPageService.getFormattedDuration(duration);
   }
 }

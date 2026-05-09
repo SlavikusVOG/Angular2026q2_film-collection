@@ -1,5 +1,6 @@
 import { Component, inject } from "@angular/core";
-import { Router, RouterLink, ActivatedRoute } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
+import { HomepageService } from "../homepage/homepage.service";
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -11,24 +12,41 @@ import { Router, RouterLink, ActivatedRoute } from "@angular/router";
 })
 export class Breadcrumbs {
   private router = inject(Router);
-  private activatedRoute = inject(ActivatedRoute);
+  private filmsService = inject(HomepageService);
 
-  getCurrentRoute() {
+  // TODO: with activated route
+  // constructor() {
+  //   this.router.events.pipe(
+  //     filter(event => event instanceof NavigationEnd)
+  //   ).subscribe(() => {
+  //     this.snapshot = this.activatedRoute.snapshot;
+  //   });
+  // }
+
+  getCurrentUrl(): string {
     const url = this.router.url;
-    if (url === '/') {
-      return [];
-    }
-    const segments = url.slice(1).split('/');
-    return segments;
+    return url || '';
   }
 
-  getBreadcrumb(segment: string) {
-    // TODO: improve with active route
-    const config = this.router.config;
-    const route = config.find(route => route.path === segment);
-    if (route) {
-      return route.data?.['breadcrumb'][segment];
+  getUrlForBreadcrumb() {
+    const url = this.router.url;
+    console.log('url', url);
+    if (url.startsWith('/homepage/film')) {
+      const urlArray = url.split('/')
+      if (urlArray.length > 1) {
+        urlArray.pop()
+        return urlArray.join('/');
+      }
+      return '/'
     }
-    return null;
+    return url || '';
+  }
+
+  getFilmTitle() {
+    console.log('current url', this.getCurrentUrl());
+    const urlArray = this.router.url.split('/');
+    const filmId = urlArray.pop();
+    const film = this.filmsService.getFilmById(Number(filmId));
+    return film?.title || 'unknown film title';
   }
 }

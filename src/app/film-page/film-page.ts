@@ -1,4 +1,8 @@
-import { Component } from "@angular/core";
+import { Component, inject, input, signal } from "@angular/core";
+import { Film } from "../models/film.data";
+import { HomepageService } from "../homepage/homepage.service";
+import { ActivatedRoute } from "@angular/router";
+import { FilmPageService } from "./film-page.service";
 
 @Component({
   selector: 'app-film-page',
@@ -6,5 +10,16 @@ import { Component } from "@angular/core";
   styleUrl: './film-page.css',
 })
 export class FilmPage {
-  constructor() {}
+  private homepageService = inject(HomepageService);
+  private activatedRoute = inject(ActivatedRoute);
+  protected film = signal<Film | null>(null);
+  private filmPageService = inject(FilmPageService);
+  constructor() {
+    const filmId = Number(this.activatedRoute.snapshot.params['id']);
+    this.film.set(this.homepageService.getFilmById(filmId) || null);
+  }
+
+  getFormattedDuration(duration: number) {
+    return this.filmPageService.getFormattedDuration(duration);
+  }
 }

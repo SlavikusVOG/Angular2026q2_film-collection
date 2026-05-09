@@ -1,5 +1,3 @@
-<h1>Home Page</h1>
-
 <search>
   <form>
     <input type="text" placeholder="Search for a film">
@@ -8,6 +6,6 @@
 
 <div class="app__film-cards-container scrollable">
   @for (film of getFilms(); track film.id) {
-    <app-film-card [film]="film"></app-film-card>
+    <app-film-card [film]="film" (click)="onFilmCardClick(film)"></app-film-card>
   }
 </div>

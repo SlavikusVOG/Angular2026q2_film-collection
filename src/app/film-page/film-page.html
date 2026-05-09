@@ -1,1 +1,7 @@
-<h1>Film Page</h1>
+<img [src]="film()!.posterUrl" alt="Film Poster">
+<h2>Title: {{ film()!.title }}</h2>
+<span>Year: {{ film()!.year }}</span>
+<span>Genre: {{ film()!.genre }}</span>
+<span>Rating: {{ film()!.rating }}</span>
+<span>Duration: {{ getFormattedDuration(film()!.duration) }}</span>
+<span>Description: {{ film()!.description }}</span>

@@ -11,4 +11,8 @@ export class HomepageService {
   getFilms(): Film[] {
     return this.films();
   }
+
+  getFilmById(id: number): Film | null {
+    return this.films().find(film => film.id === id) || null;
+  }
 }

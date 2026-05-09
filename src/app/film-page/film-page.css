@@ -1,0 +1,10 @@
+:host {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+img {
+  width: 300px;
+}

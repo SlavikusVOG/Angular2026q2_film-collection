@@ -1,8 +1,15 @@
 <nav>
-  @for (segment of getCurrentRoute(); track segment; let last = $last) {
-    <a routerLink="/{{segment}}">{{getBreadcrumb(segment)}}</a>
-    @if (!last) {
+  @switch (getUrlForBreadcrumb()) {
+    @case ('/homepage') {
+      <a routerLink="/homepage">Home</a>
+    }
+    @case ('/about') {
+      <a routerLink="/about">About</a>
+    }
+    @case ('/homepage/film') {
+      <a routerLink="/homepage">Home</a>
       <span> &gt; </span>
+      <a routerLink="{{getCurrentUrl()}}">{{getFilmTitle()}}</a>
     }
   }
 </nav>
