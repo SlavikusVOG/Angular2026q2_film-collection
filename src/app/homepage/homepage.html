@@ -1,11 +1,11 @@
 <search>
   <form>
-    <input type="text" placeholder="Search for a film">
+    <input name="film-search" type="text" placeholder="Search for a film">
   </form>
 </search>
 
 <div class="app__film-cards-container scrollable">
   @for (film of getFilms(); track film.id) {
-    <app-film-card [film]="film" (click)="onFilmCardClick(film)"></app-film-card>
+    <app-film-card [film]="film" (click)="onFilmCardClick($event,film)"></app-film-card>
   }
 </div>
