@@ -20,8 +20,4 @@ export class FilmCard {
     this.film().isFavorite = !this.film().isFavorite;
     this.isFavorite.set(this.film().isFavorite);
   }
-
-  getFormattedDuration(duration: number) {
-    return this.filmPageService.getFormattedDuration(duration);
-  }
 }

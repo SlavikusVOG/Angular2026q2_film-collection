@@ -3,5 +3,5 @@
 <span>Year: {{ film()!.year }}</span>
 <span>Genre: {{ film()!.genre }}</span>
 <span>Rating: {{ film()!.rating }}</span>
-<span>Duration: {{ getFormattedDuration(film()!.duration) }}</span>
+<span>Duration: {{ film()!.duration | duration }}</span>
 <span>Description: {{ film()!.description }}</span>
